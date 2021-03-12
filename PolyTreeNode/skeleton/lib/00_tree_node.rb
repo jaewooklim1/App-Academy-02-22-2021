@@ -11,13 +11,16 @@ class PolyTreeNode
     end
 
     def parent=(node)
-        debugger
-        if !node.children.include?(self)
+        # debugger
+        # if !node.children.include?(self)
+            p node.children 
+            p "-------------"
             node.children << self
-            node.children.each do |child|
-                child.parent = node
-            end
-            @parent = node
+            p "!!!!!!!!!!!!!"
+            p node.children
+            p "+++++++++++++"
+            
+            # @parent = node
         end
         # @parent = node
         
