@@ -13,5 +13,9 @@ class PolyTreeNode
         # node.children << self.child
     end
 
+    def new_method
+
+    end
+
 
 end
