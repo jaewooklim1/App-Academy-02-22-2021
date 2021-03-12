@@ -11,29 +11,19 @@ class PolyTreeNode
     end
 
     def parent=(node)
-        # debugger
-        # if node.parent.include?(self)
-        #     node.parent = nil
-        # end
-
-        # if @parent.nil? 
-        # node.parent = nil
         
+        return @parent = nil if node == nil
 
-        if @parent == nil #&& @parent == nil
+        if @parent == nil 
             @parent = node
-            # @parent.each do |oneParent|
-            #     if oneParent != node
-            #         oneParent.children.delete(self)
-            #     end
-            # @parent = node
-            
+            node.children << self
         end
 
-        # if node.parent == nil
-
-        # end
-        # @parent = node
+        if @parent != nil
+            @parent.children.delete(self)
+            @parent = node
+            node.children << self
+        end
         
     end
 
@@ -41,9 +31,12 @@ class PolyTreeNode
         node3.parent = self
     end
 
-    # def inspect
-    #     self.parent
-    # end
+    def remove_child(node)
+        if !self.children.include?(node)
+            raise "error"
+        end
+            node.parent = nil
+    end
 
 
 
