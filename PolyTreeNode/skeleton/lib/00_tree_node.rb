@@ -11,8 +11,10 @@ class PolyTreeNode
     end
 
     def parent=(node)
-        node.children << self
         # debugger
+        if !node.children.include?(self)
+            node.children << self
+        end
         @parent = node
         
     end
