@@ -41,13 +41,21 @@ class PolyTreeNode
 
 
     def dfs(target_value)
-        # debugger
-        return self if self.value == target_value
+        debugger
+        queue = [self]
+        # visited = Set.new
+        # return nil if queue.empty?
+        current = queue.pop # a 
+        if current.value == target_value
+            return current
+        else
+            children.each do |child|
+            queue.push(child.dfs(target_value))
 
-        children.each do |child|
-            search_val = child.dfs(target_value)
-            return search_val if search_val.value == target_value
-        end
+            end       
+    
+        end    
+        nil
 
     end
 
