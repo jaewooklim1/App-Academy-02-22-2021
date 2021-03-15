@@ -4,22 +4,6 @@ class KnightPathFinder
 
     attr_reader :pos
 
-    def initialize(pos=[0, 0])    
-        @pos = pos        
-    end
-
-    def find_path(newPos)
-        [pos] << newPos
-    end
-
-    # def root_node(pos)
-        
-    # end
-
-    # def build_move_tree
-    #     self.root_nod = PolyTreeNode.new(pos)
-    # end
-
     def self.valid_moves(pos)
         possible_moves = [[-2, -1], [-1, -2], [-2, 1], [-1, 2], [2, 1], [1, 2], [1, -2], [2, -1]]
         x, y = pos
@@ -35,6 +19,43 @@ class KnightPathFinder
         end
         valid_moves
     end
+
+    def initialize(pos=[0, 0])    
+        @pos = pos        
+        @considered_positions = [[0, 0]]
+    end
+
+    def find_path(newPos)
+
+    end
+
+    def new_move_positions(pos)
+
+        all_pos = self.valid_moves(pos)
+        newArray = []
+        all_pos.map do |position| 
+            if !considered_positions.include?(position)
+                newArray << position
+            end
+        
+        end
+        considered_positions += newArray
+                
+        return newArray   
+    end
+
+    def build_move_tree
+        self.root_node = PolyTreeNode.new(pos)
+        queue = new_move_positions(pos)
+    end
+
+    # def root_node(pos)
+        
+    # end
+
+  
+
+
 
     # used_pos = []
     # pos_mov = []
