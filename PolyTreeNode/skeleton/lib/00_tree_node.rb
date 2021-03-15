@@ -41,17 +41,13 @@ class PolyTreeNode
 
 
     def dfs(target_value)
-        debugger
-        queue = [self]
-        # visited = Set.new
-        # return nil if queue.empty?
-        current = queue.pop # a 
-        if current.value == target_value
-            return current
+        
+        if self.value == target_value
+            return self
         else
             children.each do |child|
-            queue.push(child.dfs(target_value))
-
+                search = child.dfs(target_value)
+                return search if search
             end       
     
         end    
@@ -60,33 +56,18 @@ class PolyTreeNode
     end
 
 
-        # 1. {:value=>"a", :children=>["b", "c"]}
-        # 2. {:value=>"b", :children=>["d", "e"]}
-        # 3. {:value=>"d", :children=>[]}
-        # 4. {:value=>"b", :children=>["d", "e"]}
-        # 5. 
-        # 6. 
-        # target_value = "e"
-
-        # 1. 
-
-
 
     def bfs(target_value)
         queue = [self]
         return nil if queue.empty?
-        visited = Set.new
         
         until queue.empty?
             node = queue.shift
-            if !visited.include?(node)
-                case node.value <=> target_value 
-                when 0
-                    return node
-                else
-                    queue += node.children
-                    visited << node
-                end
+            
+            if node.value == target_value 
+                return node
+            else
+                queue += node.children
             end
             
         end
@@ -102,7 +83,4 @@ class PolyTreeNode
     end
 
 end
-
-# need_to_be_checked = [self.value]
-# ones_that_has_been_checked = Set.new
 
