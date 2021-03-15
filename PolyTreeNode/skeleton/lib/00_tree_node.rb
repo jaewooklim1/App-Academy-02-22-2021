@@ -57,37 +57,45 @@ class PolyTreeNode
     # end
 
     def bfs(target_value)
-        debugger
+        # debugger
         queue = [self]
         visited = Set.new
-        return nil if queue.length == 0
-
-
         
-        while !queue.empty?
-
-            debugger
-            node = queue.first.value
-            if !visited.include?(node)
-                return node if node == target_value
-                    shifted = queue.shift
-                    childs = shifted.children
-                    childs.map {|child| child.value}
-                    queue << childs
-                    visited << node
-            end       
-
+        until queue.empty?
+            node = queue.shift
+            node.each do |one_node|
+                return one_node if one_node.value == target_value
+            end
+            queue << one_node.children
         end
+        false
+        
+        
+        # return nil if queue.length == 0
+        # while !queue.empty?
+
+        #     # debugger
+        #     node = queue.first.value
+        #     # if !visited.include?(node)
+        #         # return node if node == target_value
+        #         #     shifted = queue.shift
+        #         #     childs = shifted.children
+        #         #     childs.map {|child| child.value}
+        #         #     queue << childs
+        #         #     visited << node
+        #     # end       
+
+        # end
 
     end
 
-    def inspect
-        {
-            value: @value,
-            parent: @parent.value,
-            children: @children.map {|ele| ele.value}
-        }.to_s
-    end
+    # def inspect
+    #     {
+    #         value: @value,
+    #         parent: @parent.value,
+    #         children: @children.map {|ele| ele.value}
+    #     }.to_s
+    # end
 
 end
 
