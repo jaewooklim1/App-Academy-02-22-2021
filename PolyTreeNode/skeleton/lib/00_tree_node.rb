@@ -39,6 +39,32 @@ class PolyTreeNode
     end
 
 
+    def dfs(target_value)
+        # debugger
+        return nil if self.length < 0
 
+        mid = self.length / 2
+        case self[mid] <=> target_value
+        when 0
+            return mid
+        when 1
+            return self.take(mid).dfs(target_value)
+        else
+            search_res = self.drop(mid + 1).dfs(target_value)
+            search_res.nil? ? nil : search_res + mid + 1
+        end
+    end
 
-end                 
+    def inspect
+        {
+            value: @value,
+            parent: @parent.value,
+            children: @children.map {|ele| ele.value}
+        }.to_s
+    end
+
+end
+
+need_to_be_checked = [self.value]
+ones_that_has_been_checked = Set.new
+
